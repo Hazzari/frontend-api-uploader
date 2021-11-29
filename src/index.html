@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+  <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
+  <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+
+</head>
+
+<body id="app">
+<header></header>
+<main>
+  <div class="container flex-row">
+    <div class="left-form">
+      <section class="section-form form__registration">
+        <div class="form-container">
+          <form class="form-registration">
+            <h2 class="text-center"><strong>Create</strong> an
+              account.</h2>
+            <div class="mb-3">
+              <input class="form-control"
+                     type="email" name="email"
+                     placeholder="Email">
+            </div>
+            <div class="mb-3"><input class="form-control"
+                                     type="password" name="password"
+                                     placeholder="Password"></div>
+            <div class="mb-3"><input class="form-control"
+                                     type="password"
+                                     name="password-repeat"
+                                     placeholder="Password (repeat)">
+            </div>
+            <div class="d-flex justify-content-end mb-3">
+              <button id="btn__registration" class="btn btn-danger d-flex"
+                      type="submit">Sign Up
+              </button>
+
+            </div>
+            <div class="message_register"></div>
+
+          </form>
+        </div>
+      </section>
+      <section class="section-form form__get-token">
+        <div class="form-container">
+          <form class="form-get-token">
+            <h2 class="text-center">
+              <strong>Get Token Access&nbsp;</strong>
+            </h2>
+            <div class="mb-3">
+              <input class="form-control"
+                     type="email" name="email"
+                     placeholder="Email">
+            </div>
+            <div class="mb-3">
+              <input class="form-control"
+                     type="password" name="password"
+                     placeholder="Password">
+            </div>
+            <div class="mb-3"></div>
+            <div class="d-flex justify-content-end align-items-center mb-3">
+              <button id="btn__get-token" class="btn btn-warning d-block"
+                      type="submit">GET TOKEN
+              </button>
+            </div>
+            <div class="message_token"></div>
+
+
+            <div class="toast" id="toast_token"
+                 role="alert"
+                 aria-live="assertive"
+                 aria-atomic="true">
+              <div class="toast-header">
+                <strong class="me-auto">Bootstrap</strong>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="toast"
+                        aria-label="Закрыть">
+
+                </button>
+              </div>
+              <div id="toast-body-token"
+                   class="toast-body"></div>
+            </div>
+
+
+          </form>
+        </div>
+      </section>
+
+
+      <section class="section-form form__upload-file">
+        <div class="form-container">
+          <form name="file_upload" class="form-upload_file"
+                enctype="multipart/form-data">
+            <h2 class="text-center">
+              <strong>Upload file</strong>
+            </h2>
+            <div class="mb-3">
+              <input class="form-control"
+                     type="text" name="token"
+                     placeholder="Token">
+            </div>
+
+            <div class="form-file">
+              <div class="mb-3">
+                <input class="form-control"
+                       type="file" name="image"
+                       placeholder="file"
+                       multiple>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end align-items-center mb-3">
+              <button id="btn__upload_file"
+                      class="btn btn-success d-flex justify-content-end"
+                      type="submit">Upload file
+              </button>
+            </div>
+            <div id="message_upload"></div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </div>
+
+</main>
+<footer></footer>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script defer src="js/bundle.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+.section-form {
+    background: #f1f7fc;
+    padding: 10px 0;
+}
+
+.section-form .image-holder {
+    display: table-cell;
+    width: auto;
+    background: url(../img/meeting.jpg);
+    background-size: cover;
+}
+
+.section-form .form-container {
+    display: table;
+    max-width: 900px;
+    width: 90%;
+    margin: 0 auto;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.section-form form {
+    display: table-cell;
+    width: 400px;
+    background-color: #ffffff;
+    padding: 40px 60px;
+    padding-bottom: 100px;
+
+    color: #505e6c;
+}
+
+@media (max-width: 991px) {
+    .section-form form {
+        padding: 40px;
+    }
+}
+
+.section-form form h2 {
+    font-size: 24px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.section-form form .form-control {
+    background: #f7f9fc;
+    border: none;
+    border-bottom: 1px solid #dfe7f1;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    color: inherit;
+    text-indent: 6px;
+    height: 40px;
+}
+
+.section-form form .form-check {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.section-form form .btn-primary {
+    background: #f4476b;
+    border: none;
+    border-radius: 4px;
+    padding: 11px;
+    box-shadow: none;
+    margin-top: 35px;
+    text-shadow: none;
+    outline: none !important;
+}
+
+.section-form form .btn-primary:hover, .section-form form .btn-primary:active {
+    background: #eb3b60;
+}
+
+.section-form form .btn-primary:active {
+    transform: translateY(1px);
+}
+
+.section-form form .already {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: #6f7a85;
+    opacity: 0.9;
+    text-decoration: none;
+}
+
