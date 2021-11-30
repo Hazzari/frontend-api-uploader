@@ -2146,6 +2146,24 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./src/js/config.js":
+/*!**************************!*\
+  !*** ./src/js/config.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "config": () => (/* binding */ config)
+/* harmony export */ });
+const config = {
+  URL_API: 'http://18.221.147.170/',
+}
+
+
+/***/ }),
+
 /***/ "./src/js/get-api-date/get-token.js":
 /*!******************************************!*\
   !*** ./src/js/get-api-date/get-token.js ***!
@@ -2173,14 +2191,18 @@ const getToken = (url) => {
     let formData = new FormData(formGetToken)
 
     const tokenStatus = document.createElement('div')
-    axios.post(`${url}api/v1/auth/jwt/create/`,
+    axios.post(`${ url }api/v1/token/both/`,
       formData).then((response) => {
 
-      tokenStatus.innerText = `${response.data.access}`
+      tokenStatus.innerText = `${ response.data.access }`
 
       document.querySelector('#toast-body-token').append(tokenStatus)
 
       toastModal.show()
+
+      const getUploadForm = document.querySelector('.form-upload_file')
+
+      getUploadForm['token'].value = response.data.access
 
     }).catch((error) => {
       const data = error.response.data
@@ -2189,7 +2211,7 @@ const getToken = (url) => {
 
       for (const key in data) {
         text_msg_err += `
-          <p style="color: red">${key} - ${data[key]}</p>
+          <p style="color: red">${ key } - ${ data[key] }</p>
         `
       }
       tokenStatus.innerHTML = text_msg_err
@@ -2277,7 +2299,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "uploadFile": () => (/* binding */ uploadFile)
 /* harmony export */ });
-const {default: axios} = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
+const { default: axios } = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 const uploadFile = (url) => {
 
   const formPostFile = document.forms.namedItem('file_upload')
@@ -2287,43 +2309,37 @@ const uploadFile = (url) => {
     el.preventDefault()
 
     message.innerHTML = '<div></div>'
-
     let formData = new FormData(formPostFile)
 
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${ formData.get('token') }`,
+        Authorization: `Bearer ${formData.get('token')}`,
       },
     }
+
     formData.delete('token')
 
-    axios.post(`${ url }api/v1/upload/`, formData, config).then((response) => {
+    axios.post(`${url}api/v1/upload/`, formData, config).then((response) => {
 
       message.innerHTML = `
       <p>Файлы успешно загружены</p>
       `
 
-    }).catch(function (error) {
-      if (error.response.status === 500) {
-        message.innerHTML = ` <p>Что то с token, попробуйте запросить новый</p> `
-      } else if (error.response.status === 415) {
-        let msg = ''
-        let msgEl = document.createElement('ul')
-        for (const errorElement of error.response.data) {
-          msg += `<li>${ errorElement }</li>`
+    }).catch(function(error) {
+      if (error.response) {
+        if (error.response.status == 415){
+          message.innerHTML = `<p>Файлы не прошли валидацию:<br> ${error.response.data}</p> `
         }
-        msgEl.innerHTML = msg
-
-        message.append(msgEl)
-        // message.innerHTML = msgEl
-
       } else if (error.request) {
-        message.innerHTML = ` <p>Запрос неверен: ${ error.response.status } ${ error.response.headers }</p> `
+        message.innerHTML = `<p>Ошибка запроса:<br> ${error.request}</p> `
       } else {
-        message.innerHTML = ` <p>Ошибка: ${ error.message }</p> `
+        // Something happened in setting up the request that triggered an Error
+        message.innerHTML = `<p>Неизвестная ошибка :<br> ${error.message}</p> `
+
       }
     })
+
   })
 }
 
@@ -2397,19 +2413,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _get_api_date_registration__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./get-api-date/registration */ "./src/js/get-api-date/registration.js");
 /* harmony import */ var _get_api_date_get_token__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./get-api-date/get-token */ "./src/js/get-api-date/get-token.js");
 /* harmony import */ var _get_api_date_upload_file__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./get-api-date/upload-file */ "./src/js/get-api-date/upload-file.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./config */ "./src/js/config.js");
 
 
 
 
-const URL_API = 'http://18.221.147.170/'
-// const URL_API = 'http://127.0.0.1:8000/'
+
+const url = _config__WEBPACK_IMPORTED_MODULE_3__.config.URL_API
 
 window.addEventListener('DOMContentLoaded', () => {
 
-  ;(0,_get_api_date_registration__WEBPACK_IMPORTED_MODULE_0__.getRegistrationDate)(URL_API)
-  ;(0,_get_api_date_get_token__WEBPACK_IMPORTED_MODULE_1__.getToken)(URL_API)
-  ;(0,_get_api_date_upload_file__WEBPACK_IMPORTED_MODULE_2__.uploadFile)(URL_API)
-
+  ;(0,_get_api_date_registration__WEBPACK_IMPORTED_MODULE_0__.getRegistrationDate)(url)
+  ;(0,_get_api_date_get_token__WEBPACK_IMPORTED_MODULE_1__.getToken)(url)
+  ;(0,_get_api_date_upload_file__WEBPACK_IMPORTED_MODULE_2__.uploadFile)(url)
 
 })
 

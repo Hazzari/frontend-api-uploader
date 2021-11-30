@@ -14,14 +14,18 @@ export const getToken = (url) => {
     let formData = new FormData(formGetToken)
 
     const tokenStatus = document.createElement('div')
-    axios.post(`${url}api/v1/auth/jwt/create/`,
+    axios.post(`${ url }api/v1/token/both/`,
       formData).then((response) => {
 
-      tokenStatus.innerText = `${response.data.access}`
+      tokenStatus.innerText = `${ response.data.access }`
 
       document.querySelector('#toast-body-token').append(tokenStatus)
 
       toastModal.show()
+
+      const getUploadForm = document.querySelector('.form-upload_file')
+
+      getUploadForm['token'].value = response.data.access
 
     }).catch((error) => {
       const data = error.response.data
@@ -30,7 +34,7 @@ export const getToken = (url) => {
 
       for (const key in data) {
         text_msg_err += `
-          <p style="color: red">${key} - ${data[key]}</p>
+          <p style="color: red">${ key } - ${ data[key] }</p>
         `
       }
       tokenStatus.innerHTML = text_msg_err
