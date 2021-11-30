@@ -9,6 +9,7 @@ export const uploadFile = (url) => {
 
     message.innerHTML = '<div></div>'
     let formData = new FormData(formPostFile)
+
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -28,13 +29,10 @@ export const uploadFile = (url) => {
 
     }).catch((error) => {
       if (error.response) {
-        if (error.response.status == 415) {
-          message.innerHTML = `<p>Файлы не прошли валидацию:<br> ${error.response.data}</p> `
-        }
+        message.innerHTML = `<p>Файлы не прошли валидацию:<br> ${error.response?.data}</p>`
       } else if (error.request) {
-        message.innerHTML = `<p>Ошибка запроса:<br> ${error.request}</p> `
+        message.innerHTML = `<p>Ошибка запроса:</p> `
       } else {
-        // Something happened in setting up the request that triggered an Error
         message.innerHTML = `<p>Неизвестная ошибка :<br> ${error.message}</p> `
       }
     })

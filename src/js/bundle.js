@@ -2319,27 +2319,24 @@ const uploadFile = (url) => {
     }
 
     formData.delete('token')
-
     axios.post(`${url}api/v1/upload/`, formData, config).then((response) => {
 
-      message.innerHTML = `
-      <p>Файлы успешно загружены</p>
-      `
+      message.innerHTML = `<p>Файлы успешно загружены</p>`
 
-    }).catch(function(error) {
+      formPostFile.reset()
+      setTimeout(() => {
+        message.remove()
+      }, 3000)
+
+    }).catch((error) => {
       if (error.response) {
-        if (error.response.status == 415){
-          message.innerHTML = `<p>Файлы не прошли валидацию:<br> ${error.response.data}</p> `
-        }
+        message.innerHTML = `<p>Файлы не прошли валидацию:<br> ${error.response?.data}</p>`
       } else if (error.request) {
-        message.innerHTML = `<p>Ошибка запроса:<br> ${error.request}</p> `
+        message.innerHTML = `<p>Ошибка запроса:</p> `
       } else {
-        // Something happened in setting up the request that triggered an Error
         message.innerHTML = `<p>Неизвестная ошибка :<br> ${error.message}</p> `
-
       }
     })
-
   })
 }
 
