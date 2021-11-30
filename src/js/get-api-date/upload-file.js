@@ -9,7 +9,6 @@ export const uploadFile = (url) => {
 
     message.innerHTML = '<div></div>'
     let formData = new FormData(formPostFile)
-
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -18,16 +17,15 @@ export const uploadFile = (url) => {
     }
 
     formData.delete('token')
-
     axios.post(`${url}api/v1/upload/`, formData, config).then((response) => {
 
       message.innerHTML = `
       <p>Файлы успешно загружены</p>
       `
 
-    }).catch(function(error) {
+    }).catch((error) => {
       if (error.response) {
-        if (error.response.status == 415){
+        if (error.response.status == 415) {
           message.innerHTML = `<p>Файлы не прошли валидацию:<br> ${error.response.data}</p> `
         }
       } else if (error.request) {
@@ -35,9 +33,7 @@ export const uploadFile = (url) => {
       } else {
         // Something happened in setting up the request that triggered an Error
         message.innerHTML = `<p>Неизвестная ошибка :<br> ${error.message}</p> `
-
       }
     })
-
   })
 }
