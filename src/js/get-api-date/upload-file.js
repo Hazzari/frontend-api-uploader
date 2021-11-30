@@ -19,9 +19,12 @@ export const uploadFile = (url) => {
     formData.delete('token')
     axios.post(`${url}api/v1/upload/`, formData, config).then((response) => {
 
-      message.innerHTML = `
-      <p>Файлы успешно загружены</p>
-      `
+      message.innerHTML = `<p>Файлы успешно загружены</p>`
+
+      formPostFile.reset()
+      setTimeout(() => {
+        message.remove()
+      }, 3000)
 
     }).catch((error) => {
       if (error.response) {
