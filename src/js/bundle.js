@@ -2158,7 +2158,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "config": () => (/* binding */ config)
 /* harmony export */ });
 const config = {
-  URL_API: 'http://ec2-18-117-110-164.us-east-2.compute.amazonaws.com',
+  URL_API: 'http://ec2-18-222-114-183.us-east-2.compute.amazonaws.com/',
 }
 
 
